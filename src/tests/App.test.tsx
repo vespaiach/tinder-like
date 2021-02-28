@@ -1,11 +1,11 @@
 import React from 'react';
 import { fireEvent, render, getByTestId } from '@testing-library/react';
 
-import AppShell from './App';
-import { DataProvider } from './types';
+import AppShell from '../App';
+import { DataProvider } from '../types';
 
-jest.mock('./LikedPage');
-jest.mock('./HomePage');
+jest.mock('../LikedPage');
+jest.mock('../HomePage');
 
 /**
  * Mocking dataProvider
