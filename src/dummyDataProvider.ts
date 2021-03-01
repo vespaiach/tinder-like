@@ -1,41 +1,85 @@
-import { DataProvider, APIResult } from './types';
+/**
+ * This dummy data provider is used for testing.
+ */
 
-const handleFetch: <T>(url: string) => Promise<APIResult<T>> = async <T>(url: string) => {
-    try {
-        const stageOne = await fetch(url, {
-            headers: {
-                'app-id': process.env.REACT_APP_API_ID as string,
-            },
-        });
-        const stageTwo = await stageOne.json();
+import { DataProvider } from './types';
 
-        const result: APIResult<T> = {
-            ok: stageOne.ok,
-        };
-
-        if (stageOne.ok) {
-            result.body = stageTwo;
-        } else {
-            result.error = 'Unknown error';
-        }
-
-        return result;
-    } catch (e) {
-        console.error(e);
-        return {
-            ok: false,
-            error: 'Network failure',
-        };
-    }
+/**
+ * Mocking data
+ */
+const list = {
+    data: [
+        {
+            id: 'GorKRYsi8zHkLq9siyfU',
+            title: 'miss',
+            picture: 'https://randomuser.me/api/portraits/women/13.jpg',
+            firstName: 'Kayla',
+            lastName: 'Bredesen',
+            email: 'kayla.bredesen@example.com',
+        },
+        {
+            id: 'H1oN2F8v53t7GK0nQ6km',
+            title: 'mr',
+            lastName: 'Riley',
+            firstName: 'Jesus',
+            email: 'jesus.riley@example.com',
+            picture: 'https://randomuser.me/api/portraits/men/45.jpg',
+        },
+        {
+            id: 'I1mblOH49Po6zZKqB4xl',
+            firstName: 'Evan',
+            lastName: 'Roux',
+            email: 'evan.roux@example.com',
+            picture: 'https://randomuser.me/api/portraits/men/59.jpg',
+            title: 'mr',
+        },
+    ],
+    total: 2,
+    page: 0,
+};
+const details: {
+    [key: string]: {
+        id: string;
+        lastName: string;
+        firstName: string;
+        picture: string;
+        gender: string;
+        dateOfBirth: string;
+    };
+} = {
+    GorKRYsi8zHkLq9siyfU: {
+        id: 'GorKRYsi8zHkLq9siyfU',
+        picture: 'https://randomuser.me/api/portraits/women/13.jpg',
+        firstName: 'Kayla',
+        lastName: 'Bredesen',
+        gender: 'female',
+        dateOfBirth: '1958-08-20T08:43:07.057Z',
+    },
+    H1oN2F8v53t7GK0nQ6km: {
+        id: 'H1oN2F8v53t7GK0nQ6km',
+        dateOfBirth: '1960-08-20T08:36:37.039Z',
+        lastName: 'Riley',
+        firstName: 'Jesus',
+        picture: 'https://randomuser.me/api/portraits/men/45.jpg',
+        gender: 'male',
+    },
+    I1mblOH49Po6zZKqB4xl: {
+        id: 'I1mblOH49Po6zZKqB4xl',
+        firstName: 'Evan',
+        gender: 'male',
+        lastName: 'Roux',
+        dateOfBirth: '1988-06-25T04:31:51.701Z',
+        picture: 'https://randomuser.me/api/portraits/men/59.jpg',
+    },
 };
 
-const dummyDataProvider: DataProvider = {
-    getList(pg, perPage = 20) {
-        return handleFetch(`https://dummyapi.io/data/api/user?limit=${perPage}&page=${pg}`);
-    },
-    async getOne(id: string) {
-        return handleFetch(`https://dummyapi.io/data/api/user/${id}`);
-    },
+const dataProvider: DataProvider = {
+    getList: () => Promise.resolve({ ok: true, body: list }),
+    getOne: (id: string) =>
+        Promise.resolve({
+            ok: true,
+            body: details[id],
+        }),
 };
 
-export default dummyDataProvider;
+export default dataProvider;

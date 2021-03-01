@@ -71,10 +71,10 @@ export default function HomePage({
                 </CardContent>
             ) : (
                 <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
+                    <Typography gutterBottom variant="h5" component="h2" data-testid="username">
                         {name}
                     </Typography>
-                    <Typography variant="body2" color="textSecondary" component="div">
+                    <Typography variant="body2" color="textSecondary" component="div" data-testid="userbio">
                         {loadingDetails ? (
                             <CircularProgress color="secondary" size={24} />
                         ) : (
@@ -91,6 +91,7 @@ export default function HomePage({
                 <CardActions className={classes.footerRoot}>
                     <ButtonGroup disableElevation variant="contained" color="primary" fullWidth>
                         <Button
+                            data-testid="btnDislike"
                             size="small"
                             color="primary"
                             startIcon={<BrokenHeartIcon title="Broken Heart" />}
@@ -98,6 +99,7 @@ export default function HomePage({
                             Dislike
                         </Button>
                         <Button
+                            data-testid="btnLike"
                             size="small"
                             color="primary"
                             startIcon={<FavoriteRoundedIcon />}

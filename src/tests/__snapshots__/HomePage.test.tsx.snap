@@ -16,11 +16,13 @@ exports[`Test HomePage component should render profile correctly 1`] = `
     >
       <h2
         class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+        data-testid="username"
       >
         Toan Nguyen
       </h2>
       <div
         class="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+        data-testid="userbio"
       >
         <div
           class="MuiCircularProgress-root MuiCircularProgress-colorSecondary MuiCircularProgress-indeterminate"
@@ -52,6 +54,7 @@ exports[`Test HomePage component should render profile correctly 1`] = `
       >
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall MuiButton-disableElevation MuiButton-fullWidth"
+          data-testid="btnDislike"
           tabindex="0"
           type="button"
         >
@@ -83,6 +86,7 @@ exports[`Test HomePage component should render profile correctly 1`] = `
         </button>
         <button
           class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall MuiButton-disableElevation MuiButton-fullWidth"
+          data-testid="btnLike"
           tabindex="0"
           type="button"
         >
