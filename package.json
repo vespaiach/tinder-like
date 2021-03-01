@@ -1,7 +1,9 @@
 {
     "name": "tinder-like",
     "version": "0.1.0",
-    "private": true,
+    "private": false,
+    "license": "MIT",
+    "author": "Toan Nguyen <nta.toan@gmail.com>",
     "dependencies": {
         "@material-ui/core": "^4.11.3",
         "@material-ui/icons": "^4.11.2",
