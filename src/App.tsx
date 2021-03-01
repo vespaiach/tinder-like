@@ -1,4 +1,4 @@
-import { CircularProgress, Container, Divider, Grid, IconButton } from '@material-ui/core';
+import { Container, Divider, Grid, IconButton } from '@material-ui/core';
 import { useEffect, useReducer } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -108,9 +108,7 @@ function App({ dataProvider }: AppProps) {
      * Routing: home | liked | dislike
      */
     let ele;
-    if (state.loading) {
-        ele = <CircularProgress />;
-    } else if (state.route === 'liked') {
+    if (state.route === 'liked') {
         const profiles = state.liked.map<UserProfile>((i: number) => state.list[i]);
         ele = <ListPage profiles={profiles} />;
     } else if (state.route === 'disliked') {
@@ -118,9 +116,10 @@ function App({ dataProvider }: AppProps) {
         ele = <ListPage profiles={profiles} />;
     } else {
         const profile = state.list[state.index];
-        if (profile) {
+        if (profile || state.loading) {
             ele = (
                 <HomePage
+                    loading={state.loading}
                     {...profile}
                     onDislike={() => {
                         dispatch(dislikeProfile());
@@ -133,7 +132,7 @@ function App({ dataProvider }: AppProps) {
                 />
             );
         } else {
-            ele = <div>No profile</div>;
+            ele = <div>No more profile.</div>;
         }
     }
 

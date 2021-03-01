@@ -2,7 +2,6 @@ import {
     Button,
     ButtonGroup,
     Card,
-    CardActionArea,
     CardActions,
     CardContent,
     CardMedia,
@@ -11,16 +10,23 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { FavoriteRounded as FavoriteRoundedIcon } from '@material-ui/icons';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 import BrokenHeartIcon from './BrokenHeartIcon';
 
-const useStyles = makeStyles((theme) => ({
-    profileRoot: {},
+const useStyles = makeStyles({
+    img: {
+        height: 320,
+    },
+    cardContent: {
+        paddingLeft: 0,
+        paddingRight: 0,
+    },
     footerRoot: {
         paddingRight: 0,
         paddingLeft: 0,
     },
-}));
+});
 
 interface HomePageProps {
     id: string;
@@ -28,6 +34,7 @@ interface HomePageProps {
     picture: string;
     gender?: string | null;
     age?: number | null;
+    loading: boolean;
     onLike: (id: string) => void;
     onDislike: (id: string) => void;
 }
@@ -37,50 +44,69 @@ export default function HomePage({
     age,
     picture,
     id,
+    loading,
     onDislike,
     onLike,
 }: HomePageProps) {
     const classes = useStyles();
-    const loading = !gender || !age;
+    const loadingDetails = !gender || !age;
     return (
-        <Card className={classes.profileRoot} elevation={0}>
-            <CardActionArea>
-                <CardMedia component="img" alt={name} height="320" image={picture} title={name} />
-                <CardContent>
+        <Card elevation={0}>
+            {loading ? (
+                <Skeleton animation="wave" variant="rect" height="320" className={classes.img} />
+            ) : (
+                <CardMedia
+                    component="img"
+                    alt={name}
+                    className={classes.img}
+                    image={picture}
+                    title={name}
+                />
+            )}
+            {loading ? (
+                <CardContent className={classes.cardContent}>
+                    <Skeleton height={68} />
+                    <Skeleton />
+                    <Skeleton />
+                </CardContent>
+            ) : (
+                <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
                         {name}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="div">
-                        {loading ? (
+                        {loadingDetails ? (
                             <CircularProgress color="secondary" size={24} />
                         ) : (
                             <>
                                 Sex: {gender}
                                 <br />
-                                Age: {age === null ? 'loading...' : age}
+                                Age: {age === null ? 'loadingDetails...' : age}
                             </>
                         )}
                     </Typography>
                 </CardContent>
-            </CardActionArea>
-            <CardActions className={classes.footerRoot}>
-                <ButtonGroup disableElevation variant="contained" color="primary" fullWidth>
-                    <Button
-                        size="small"
-                        color="primary"
-                        startIcon={<BrokenHeartIcon title="Broken Heart" />}
-                        onClick={() => onDislike(id)}>
-                        Dislike
-                    </Button>
-                    <Button
-                        size="small"
-                        color="primary"
-                        startIcon={<FavoriteRoundedIcon />}
-                        onClick={() => onLike(id)}>
-                        Like
-                    </Button>
-                </ButtonGroup>
-            </CardActions>
+            )}
+            {!loading && (
+                <CardActions className={classes.footerRoot}>
+                    <ButtonGroup disableElevation variant="contained" color="primary" fullWidth>
+                        <Button
+                            size="small"
+                            color="primary"
+                            startIcon={<BrokenHeartIcon title="Broken Heart" />}
+                            onClick={() => onDislike(id)}>
+                            Dislike
+                        </Button>
+                        <Button
+                            size="small"
+                            color="primary"
+                            startIcon={<FavoriteRoundedIcon />}
+                            onClick={() => onLike(id)}>
+                            Like
+                        </Button>
+                    </ButtonGroup>
+                </CardActions>
+            )}
         </Card>
     );
 }
