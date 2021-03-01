@@ -1,5 +1,5 @@
 import { Container, Divider, Grid, IconButton } from '@material-ui/core';
-import { useCallback, useEffect, useReducer } from 'react';
+import { useCallback, useReducer } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     Image as HomeRoundedIcon,
@@ -13,9 +13,6 @@ import { DataProvider, UserProfile } from './types';
 import DataContext from './DataContext';
 import BrokenHeartIcon from './BrokenHeartIcon';
 import {
-    appDone,
-    appError,
-    appLoading,
     dislikeProfile,
     gotoDislikedPage,
     gotoHomePage,
@@ -23,12 +20,9 @@ import {
     gotoNextProfile,
     initialState,
     likeProfile,
-    pageLoaded,
-    receiveProfiles,
     reducer,
-    updateProfile,
 } from './store';
-import { useGesture } from './hooks';
+import { useGesture, useListProfiles, useProfileDetails } from './hooks';
 
 const useStyles = makeStyles((theme) => ({
     navigation: {
@@ -77,52 +71,15 @@ function App({ dataProvider }: AppProps) {
         [like, dislike]
     );
 
-    useEffect(() => {
-        /**
-         * Calculate which page the profile index is in
-         */
-        let page =
-            (state.index + 1) % state.perPage === 0
-                ? (state.index + 1) / state.perPage
-                : Math.floor((state.index + 1) / state.perPage) + 1;
-
-        /**
-         * Load page data if it hasn't loaded yet.
-         */
-        if (!state.pages[page]) {
-            dispatch(appLoading());
-            dataProvider
-                .getList(page)
-                .then((result) => {
-                    if (result.ok && result.body) {
-                        dispatch(receiveProfiles(result.body.data));
-                        dispatch(pageLoaded(page));
-                    } else {
-                        dispatch(appError(result.error || 'Unknown error'));
-                    }
-                })
-                .catch(() => {
-                    dispatch(appError('Unexpected error'));
-                })
-                .finally(() => {
-                    dispatch(appDone());
-                });
-        }
-    }, [state.index, state.perPage, dataProvider, state.pages]);
+    /**
+     * Load profiles.
+     */
+    useListProfiles(dataProvider, state.index, state.perPage, state.pages, dispatch);
 
     /**
      * Load profile details.
      */
-    useEffect(() => {
-        const profile = state.list[state.index];
-        if (profile && (!profile.gender || !profile.age)) {
-            dataProvider.getOne(profile.id).then((result) => {
-                if (result.ok && result.body) {
-                    dispatch(updateProfile(result.body, state.index));
-                }
-            });
-        }
-    }, [state.index, state.list, dataProvider]);
+    useProfileDetails(dataProvider, state.index, state.list, dispatch);
 
     /**
      * Listen to swipe events.
