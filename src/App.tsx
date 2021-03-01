@@ -1,10 +1,11 @@
 import { Container, Divider, Grid, IconButton } from '@material-ui/core';
-import { useEffect, useReducer } from 'react';
+import { useCallback, useEffect, useReducer } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
     Image as HomeRoundedIcon,
     FavoriteRounded as FavoriteRoundedIcon,
 } from '@material-ui/icons';
+import Hammer from 'hammerjs';
 
 import ListPage from './ListPage';
 import HomePage from './HomePage';
@@ -27,6 +28,7 @@ import {
     reducer,
     updateProfile,
 } from './store';
+import { useGesture } from './hooks';
 
 const useStyles = makeStyles((theme) => ({
     navigation: {
@@ -56,6 +58,24 @@ export interface AppProps {
 function App({ dataProvider }: AppProps) {
     const classes = useStyles();
     const [state, dispatch] = useReducer(reducer, initialState);
+    const like = useCallback(() => {
+        dispatch(likeProfile());
+        dispatch(gotoNextProfile());
+    }, [dispatch]);
+    const dislike = useCallback(() => {
+        dispatch(dislikeProfile());
+        dispatch(gotoNextProfile());
+    }, [dispatch]);
+    const handleGesture = useCallback<(ev: HammerInput) => void>(
+        (ev: HammerInput) => {
+            if (ev.direction === Hammer.DIRECTION_LEFT) {
+                dislike();
+            } else if (ev.direction === Hammer.DIRECTION_RIGHT) {
+                like();
+            }
+        },
+        [like, dislike]
+    );
 
     useEffect(() => {
         /**
@@ -105,7 +125,12 @@ function App({ dataProvider }: AppProps) {
     }, [state.index, state.list, dataProvider]);
 
     /**
-     * Routing: home | liked | dislike
+     * Listen to swipe events.
+     */
+    useGesture('app-shell-container', state.loading, handleGesture);
+
+    /**
+     * Routing: home | liked | dislike.
      */
     let ele;
     if (state.route === 'liked') {
@@ -118,18 +143,7 @@ function App({ dataProvider }: AppProps) {
         const profile = state.list[state.index];
         if (profile || state.loading) {
             ele = (
-                <HomePage
-                    loading={state.loading}
-                    {...profile}
-                    onDislike={() => {
-                        dispatch(dislikeProfile());
-                        dispatch(gotoNextProfile());
-                    }}
-                    onLike={() => {
-                        dispatch(likeProfile());
-                        dispatch(gotoNextProfile());
-                    }}
-                />
+                <HomePage loading={state.loading} {...profile} onDislike={dislike} onLike={like} />
             );
         } else {
             ele = <div>No more profile.</div>;
@@ -167,7 +181,9 @@ function App({ dataProvider }: AppProps) {
                                 <BrokenHeartIcon />
                             </IconButton>
                         </div>
-                        <div className={classes.appShell}>{ele}</div>
+                        <div className={classes.appShell} id="app-shell-container">
+                            {ele}
+                        </div>
                     </Grid>
                 </Grid>
             </Container>
