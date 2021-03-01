@@ -1,49 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Test profile card should render the same everytime 1`] = `
+exports[`Test HomePage component should render profile correctly 1`] = `
 <div>
   <div
-    class="MuiPaper-root MuiCard-root makeStyles-profileRoot-1 MuiPaper-elevation1 MuiPaper-rounded"
+    class="MuiPaper-root MuiCard-root MuiPaper-elevation0 MuiPaper-rounded"
   >
-    <button
-      class="MuiButtonBase-root MuiCardActionArea-root"
-      tabindex="0"
-      type="button"
-    >
-      <img
-        alt="Toan Nguyen"
-        class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img"
-        height="320"
-        src="goi_bo.jpg"
-        title="Toan Nguyen"
-      />
-      <div
-        class="MuiCardContent-root"
-      >
-        <h2
-          class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
-        >
-          Toan Nguyen
-        </h2>
-        <p
-          class="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
-        >
-          Sex: 
-          male
-          <br />
-          Age: 
-          39
-        </p>
-      </div>
-      <span
-        class="MuiCardActionArea-focusHighlight"
-      />
-      <span
-        class="MuiTouchRipple-root"
-      />
-    </button>
+    <img
+      alt="Toan Nguyen"
+      class="MuiCardMedia-root makeStyles-img-4 MuiCardMedia-media MuiCardMedia-img"
+      src="picture"
+      title="Toan Nguyen"
+    />
     <div
-      class="MuiCardActions-root MuiCardActions-spacing"
+      class="MuiCardContent-root makeStyles-cardContent-5"
+    >
+      <h2
+        class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
+      >
+        Toan Nguyen
+      </h2>
+      <div
+        class="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+      >
+        <div
+          class="MuiCircularProgress-root MuiCircularProgress-colorSecondary MuiCircularProgress-indeterminate"
+          role="progressbar"
+          style="width: 24px; height: 24px;"
+        >
+          <svg
+            class="MuiCircularProgress-svg"
+            viewBox="22 22 44 44"
+          >
+            <circle
+              class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
+              cx="44"
+              cy="44"
+              fill="none"
+              r="20.2"
+              stroke-width="3.6"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div
+      class="MuiCardActions-root makeStyles-footerRoot-6 MuiCardActions-spacing"
     >
       <div
         class="MuiButtonGroup-root MuiButtonGroup-fullWidth MuiButtonGroup-disableElevation MuiButtonGroup-contained"
@@ -109,6 +110,32 @@ exports[`Test profile card should render the same everytime 1`] = `
           />
         </button>
       </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Test HomePage component should render skeleton loader 1`] = `
+<div>
+  <div
+    class="MuiPaper-root MuiCard-root MuiPaper-elevation0 MuiPaper-rounded"
+  >
+    <span
+      class="MuiSkeleton-root MuiSkeleton-rect makeStyles-img-1 MuiSkeleton-wave"
+    />
+    <div
+      class="MuiCardContent-root makeStyles-cardContent-2"
+    >
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+        style="height: 68px;"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+      />
+      <span
+        class="MuiSkeleton-root MuiSkeleton-text MuiSkeleton-pulse"
+      />
     </div>
   </div>
 </div>

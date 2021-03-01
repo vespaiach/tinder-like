@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Test ListPage component should render empty list 1`] = `
+<div>
+  <ul
+    class="MuiList-root makeStyles-listRoot-1 MuiList-padding"
+  />
+</div>
+`;
+
+exports[`Test ListPage component should render one item 1`] = `
+<div>
+  <ul
+    class="MuiList-root makeStyles-listRoot-2 MuiList-padding"
+  >
+    <li
+      class="MuiListItem-root"
+    >
+      <div
+        class="MuiListItemAvatar-root"
+      >
+        <div
+          class="MuiAvatar-root MuiAvatar-circle"
+        >
+          <img
+            alt="Toan Nguyen"
+            class="MuiAvatar-img"
+            src="picture"
+          />
+        </div>
+      </div>
+      <div
+        class="MuiListItemText-root MuiListItemText-multiline"
+      >
+        <span
+          class="MuiTypography-root MuiListItemText-primary MuiTypography-body1 MuiTypography-displayBlock"
+        >
+          Toan Nguyen
+        </span>
+        <p
+          class="MuiTypography-root MuiListItemText-secondary MuiTypography-body2 MuiTypography-colorTextSecondary MuiTypography-displayBlock"
+        >
+          <span>
+            Age: 
+            1
+             | Gender: 
+            male
+          </span>
+        </p>
+      </div>
+    </li>
+  </ul>
+</div>
+`;

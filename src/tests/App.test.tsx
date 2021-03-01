@@ -6,9 +6,6 @@ import { DataProvider } from '../types';
 import body from './data.test.json';
 import { act } from 'react-dom/test-utils';
 
-jest.mock('../LikedPage');
-jest.mock('../HomePage');
-
 /**
  * Mocking dataProvider
  */

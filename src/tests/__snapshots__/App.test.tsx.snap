@@ -3,7 +3,7 @@
 exports[`Test app shell should be on home page 1`] = `
 <div>
   <div
-    class="MuiContainer-root MuiContainer-maxWidthXs"
+    class="MuiContainer-root makeStyles-containerRoot-2 MuiContainer-maxWidthXs"
   >
     <div
       class="MuiGrid-root MuiGrid-container"
@@ -16,7 +16,7 @@ exports[`Test app shell should be on home page 1`] = `
         >
           <button
             aria-label="go to home page"
-            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-edgeStart"
+            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorSecondary MuiIconButton-edgeStart"
             data-testid="home-page"
             tabindex="0"
             type="button"
@@ -31,7 +31,7 @@ exports[`Test app shell should be on home page 1`] = `
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z"
+                  d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"
                 />
               </svg>
             </span>
@@ -67,66 +67,13 @@ exports[`Test app shell should be on home page 1`] = `
               class="MuiTouchRipple-root"
             />
           </button>
-        </div>
-        <div
-          class="makeStyles-appShell-2"
-        >
-          <div>
-            home page
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Test app shell should be on liked page 1`] = `
-<div>
-  <div
-    class="MuiContainer-root MuiContainer-maxWidthXs"
-  >
-    <div
-      class="MuiGrid-root MuiGrid-container"
-    >
-      <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
-      >
-        <div
-          class="makeStyles-navigation-3"
-        >
-          <button
-            aria-label="go to home page"
-            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-edgeStart"
-            data-testid="home-page"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
           <hr
             class="MuiDivider-root MuiDivider-vertical"
           />
           <button
-            aria-label="list of liked profiles"
+            aria-label="list of disliked profiles"
             class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary"
-            data-testid="liked-page"
+            data-testid="disliked-page"
             tabindex="0"
             type="button"
           >
@@ -139,8 +86,11 @@ exports[`Test app shell should be on liked page 1`] = `
                 focusable="false"
                 viewBox="0 0 24 24"
               >
+                <title>
+                  Dislike
+                </title>
                 <path
-                  d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"
+                  d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C8.17,3 8.82,3.12 9.44,3.33L13,9.35L9,14.35L12,21.35V21.35M16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35L11,14.35L15.5,9.35L12.85,4.27C13.87,3.47 15.17,3 16.5,3Z"
                 />
               </svg>
             </span>
@@ -150,107 +100,105 @@ exports[`Test app shell should be on liked page 1`] = `
           </button>
         </div>
         <div
-          class="makeStyles-appShell-4"
+          class="makeStyles-appShell-3"
+          id="app-shell-container"
+          style="user-select: none; webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"
         >
           <div
-            class="MuiCircularProgress-root MuiCircularProgress-colorPrimary MuiCircularProgress-indeterminate"
-            role="progressbar"
-            style="width: 40px; height: 40px;"
+            class="MuiPaper-root MuiCard-root MuiPaper-elevation0 MuiPaper-rounded"
           >
-            <svg
-              class="MuiCircularProgress-svg"
-              viewBox="22 22 44 44"
-            >
-              <circle
-                class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate"
-                cx="44"
-                cy="44"
-                fill="none"
-                r="20.2"
-                stroke-width="3.6"
-              />
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`Test app shell should render  1`] = `
-<div>
-  <div
-    class="MuiContainer-root MuiContainer-maxWidthXs"
-  >
-    <div
-      class="MuiGrid-root MuiGrid-container"
-    >
-      <div
-        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12"
-      >
-        <div
-          class="makeStyles-navigation-1"
-        >
-          <button
-            aria-label="go to home page"
-            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary MuiIconButton-edgeStart"
-            data-testid="home-page"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="MuiIconButton-label"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
+            <img
+              alt="Kayla Bredesen"
+              class="MuiCardMedia-root makeStyles-img-4 MuiCardMedia-media MuiCardMedia-img"
+              src="https://randomuser.me/api/portraits/women/13.jpg"
+              title="Kayla Bredesen"
             />
-          </button>
-          <hr
-            class="MuiDivider-root MuiDivider-vertical"
-          />
-          <button
-            aria-label="list of liked profiles"
-            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-colorPrimary"
-            data-testid="liked-page"
-            tabindex="0"
-            type="button"
-          >
-            <span
-              class="MuiIconButton-label"
+            <div
+              class="MuiCardContent-root makeStyles-cardContent-5"
             >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root"
-                focusable="false"
-                viewBox="0 0 24 24"
+              <h2
+                class="MuiTypography-root MuiTypography-h5 MuiTypography-gutterBottom"
               >
-                <path
-                  d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"
-                />
-              </svg>
-            </span>
-            <span
-              class="MuiTouchRipple-root"
-            />
-          </button>
-        </div>
-        <div
-          class="makeStyles-appShell-2"
-        >
-          <div>
-            home page
+                Kayla Bredesen
+              </h2>
+              <div
+                class="MuiTypography-root MuiTypography-body2 MuiTypography-colorTextSecondary"
+              >
+                Sex: 
+                male
+                <br />
+                Age: 
+                47
+              </div>
+            </div>
+            <div
+              class="MuiCardActions-root makeStyles-footerRoot-6 MuiCardActions-spacing"
+            >
+              <div
+                class="MuiButtonGroup-root MuiButtonGroup-fullWidth MuiButtonGroup-disableElevation MuiButtonGroup-contained"
+                role="group"
+              >
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall MuiButton-disableElevation MuiButton-fullWidth"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiButton-label"
+                  >
+                    <span
+                      class="MuiButton-startIcon MuiButton-iconSizeSmall"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <title>
+                          Broken Heart
+                        </title>
+                        <path
+                          d="M12,21.35L10.55,20.03C5.4,15.36 2,12.27 2,8.5C2,5.41 4.42,3 7.5,3C8.17,3 8.82,3.12 9.44,3.33L13,9.35L9,14.35L12,21.35V21.35M16.5,3C19.58,3 22,5.41 22,8.5C22,12.27 18.6,15.36 13.45,20.03L12,21.35L11,14.35L15.5,9.35L12.85,4.27C13.87,3.47 15.17,3 16.5,3Z"
+                        />
+                      </svg>
+                    </span>
+                    Dislike
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+                <button
+                  class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButtonGroup-grouped MuiButtonGroup-groupedHorizontal MuiButtonGroup-groupedContained MuiButtonGroup-groupedContainedHorizontal MuiButtonGroup-groupedContainedPrimary MuiButton-containedPrimary MuiButton-containedSizeSmall MuiButton-sizeSmall MuiButton-disableElevation MuiButton-fullWidth"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiButton-label"
+                  >
+                    <span
+                      class="MuiButton-startIcon MuiButton-iconSizeSmall"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M13.35 20.13c-.76.69-1.93.69-2.69-.01l-.11-.1C5.3 15.27 1.87 12.16 2 8.28c.06-1.7.93-3.33 2.34-4.29 2.64-1.8 5.9-.96 7.66 1.1 1.76-2.06 5.02-2.91 7.66-1.1 1.41.96 2.28 2.59 2.34 4.29.14 3.88-3.3 6.99-8.55 11.76l-.1.09z"
+                        />
+                      </svg>
+                    </span>
+                    Like
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
