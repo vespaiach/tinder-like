@@ -33,7 +33,7 @@ const dummyioDataProvider: DataProvider = {
     getList(pg, perPage = 20) {
         return handleFetch(`https://dummyapi.io/data/api/user?limit=${perPage}&page=${pg}`);
     },
-    async getOne(id: string) {
+    getOne(id: string) {
         return handleFetch(`https://dummyapi.io/data/api/user/${id}`);
     },
 };

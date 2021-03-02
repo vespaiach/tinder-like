@@ -20,11 +20,11 @@ describe('Test store:', () => {
         store = reducer(state, { type: '@init' });
     });
 
-    test('shoulde have initial state', () => {
+    test('should have initial state', () => {
         expect(store).toMatchObject(state);
     });
 
-    test('shoulde have list of profiles', () => {
+    test('should have list of profiles', () => {
         const fresh = reducer(
             store,
             receiveProfiles([
@@ -55,7 +55,7 @@ describe('Test store:', () => {
         });
     });
 
-    test('shoulde have profile updated', () => {
+    test('should have profile updated', () => {
         let fresh = reducer(
             store,
             receiveProfiles([
